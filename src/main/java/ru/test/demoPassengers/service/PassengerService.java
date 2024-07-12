@@ -1,13 +1,8 @@
 package ru.test.demoPassengers.service;
 
-import org.springframework.stereotype.Service;
-import ru.test.demoPassengers.model.Passenger;
-
-import java.util.List;
-
+import ru.test.demoPassengers.dto.PassengerDTO;
+import org.springframework.data.domain.Page;
 
 public interface PassengerService {
-    List<Passenger> findAllPassenger();
-    Passenger findByFirstname(String firstname);
-    Passenger findAllByAge(int age);
+    Page<PassengerDTO> findAllPassenger(PassengerDTO passengerDTO);
 }

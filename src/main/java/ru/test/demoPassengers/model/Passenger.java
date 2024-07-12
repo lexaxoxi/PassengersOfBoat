@@ -1,20 +1,42 @@
 package ru.test.demoPassengers.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+import org.antlr.v4.runtime.misc.NotNull;
+
+import java.util.Arrays;
 
 @Data
 @Entity
 public class Passenger {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "name")
-    private String firstname;
-    private String lastname;
-    private String otchestvo;
-    private int age;
+    private boolean survived;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Pclass pclass;
+    @NotNull
+    private String name;
+    @NotNull
+    private String sex;
+    private double age;
+    private int siblingsSpousesAboard;
+    private int parentsChildrenAboard;
+    private double fare;
+
+    public Enum Pclass {
+        FIRST(1), SECOND(2), THIRD(3);
+        private final int id;
+
+        Pclass(int id) {this.id = id);
+        }
+
+    public static Pclass getById(int id) {
+            return Arrays.stream(Pclass.values())
+                    .filter(pclass->pclass.id ==id)
+                    .findFirst()
+                    .orElseThrow(() -> new IllegalArgumentException("Не найден класс пассажира" + id));
+        }
+    }
 }
