@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class Passenger {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     private boolean survived;
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -25,16 +25,17 @@ public class Passenger {
     private int parentsChildrenAboard;
     private double fare;
 
-    public Enum Pclass {
+    public enum Pclass {
         FIRST(1), SECOND(2), THIRD(3);
         private final int id;
 
-        Pclass(int id) {this.id = id);
+        Pclass(int id) {
+            this.id = id;
         }
 
     public static Pclass getById(int id) {
             return Arrays.stream(Pclass.values())
-                    .filter(pclass->pclass.id ==id)
+                    .filter(pclass->pclass.id == id)
                     .findFirst()
                     .orElseThrow(() -> new IllegalArgumentException("Не найден класс пассажира" + id));
         }

@@ -1,8 +1,8 @@
 package ru.test.demoPassengers.service.impl;
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -23,7 +23,7 @@ import java.util.List;
 import static ru.test.demoPassengers.Filtres.PassengerFilter.*;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class PassengerServiceImpl implements PassengerService {
 
     private final PassengerRepo repo;
