@@ -1,6 +1,5 @@
 package ru.test.demoPassengers.service.impl;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
@@ -59,5 +58,10 @@ public class PassengerServiceImpl implements PassengerService {
         // Combine specificationList (AND) for the final database query
         final var finalSpecification = combineFilters(specificationList);
         return mapper.passengerPageToPassengerDTOPage(repo.findAll(finalSpecification, pageable));
+    }
+
+    @Override
+    public Page<PassengerDTO> findAllPassenger(PassengerDTO passengerDTO) {
+        return null;
     }
 }
